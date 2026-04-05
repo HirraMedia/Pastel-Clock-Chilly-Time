@@ -415,4 +415,45 @@ body.dark-mode .display-main, body.dark-mode .neumorphic-input input, body.dark-
     justify-content: center;
     flex-wrap: wrap;
 }
+/* Điều chỉnh cho màn hình điện thoại (dưới 600px) */
+@media (max-width: 600px) {
+    .app-container {
+        width: 95%; /* Tăng độ rộng để tận dụng không gian */
+        padding: 15px;
+        margin: 10px auto;
+    }
 
+    .display-main {
+        font-size: 3rem; /* Giảm kích thước chữ giờ để không bị tràn dòng */
+    }
+
+    .nav-menu {
+        flex-wrap: wrap; /* Nếu menu quá dài sẽ tự xuống dòng */
+        gap: 5px;
+    }
+
+    .tab-btn {
+        padding: 8px 12px;
+        font-size: 0.9rem;
+        flex: 1; /* Chia đều các nút menu */
+    }
+
+    .input-group {
+        flex-direction: column; /* Chuyển ô nhập Phút/Giây từ ngang thành dọc */
+        align-items: center;
+    }
+
+    .neumorphic-input {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .btn-group {
+        flex-direction: column; /* Nút Bắt đầu/Làm mới xếp chồng lên nhau */
+        gap: 10px;
+    }
+
+    .action-btn {
+        width: 100%; /* Nút bấm to ra cho dễ chạm bằng ngón tay */
+    }
+}
