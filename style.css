@@ -1,0 +1,418 @@
+/* GIỮ NGUYÊN CODE CSS CỦA VY TỪ ĐÂY */
+.theme-switch {
+  --toggle-size: 20px; /* Mình hạ size xuống một chút cho vừa app, Vy có thể chỉnh lại to hơn nhé */
+  --container-width: 5.625em;
+  --container-height: 2.5em;
+  --container-radius: 6.25em;
+  --container-light-bg: #3D7EAE;
+  --container-night-bg: #1D1F2C;
+  --circle-container-diameter: 3.375em;
+  --sun-moon-diameter: 2.125em;
+  --sun-bg: #ECCA2F;
+  --moon-bg: #C4C9D1;
+  --spot-color: #959DB1;
+  --circle-container-offset: calc((var(--circle-container-diameter) - var(--container-height)) / 2 * -1);
+  --stars-color: #fff;
+  --clouds-color: #F3FDFF;
+  --back-clouds-color: #AACADF;
+  --transition: .5s cubic-bezier(0, -0.02, 0.4, 1.25);
+  --circle-transition: .3s cubic-bezier(0, -0.02, 0.35, 1.17);
+}
+
+.theme-switch, .theme-switch *, .theme-switch *::before, .theme-switch *::after {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-size: var(--toggle-size);
+}
+
+.theme-switch__container {
+  width: var(--container-width);
+  height: var(--container-height);
+  background-color: var(--container-light-bg);
+  border-radius: var(--container-radius);
+  overflow: hidden;
+  cursor: pointer;
+  -webkit-box-shadow: 0em -0.062em 0.062em rgba(0, 0, 0, 0.25), 0em 0.062em 0.125em rgba(255, 255, 255, 0.94);
+  box-shadow: 0em -0.062em 0.062em rgba(0, 0, 0, 0.25), 0em 0.062em 0.125em rgba(255, 255, 255, 0.94);
+  -webkit-transition: var(--transition);
+  -o-transition: var(--transition);
+  transition: var(--transition);
+  position: relative;
+}
+
+.theme-switch__container::before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  -webkit-box-shadow: 0em 0.05em 0.187em rgba(0, 0, 0, 0.25) inset, 0em 0.05em 0.187em rgba(0, 0, 0, 0.25) inset;
+  box-shadow: 0em 0.05em 0.187em rgba(0, 0, 0, 0.25) inset, 0em 0.05em 0.187em rgba(0, 0, 0, 0.25) inset;
+  border-radius: var(--container-radius)
+}
+
+.theme-switch__checkbox {
+  display: none;
+}
+
+.theme-switch__circle-container {
+  width: var(--circle-container-diameter);
+  height: var(--circle-container-diameter);
+  background-color: rgba(255, 255, 255, 0.1);
+  position: absolute;
+  left: var(--circle-container-offset);
+  top: var(--circle-container-offset);
+  border-radius: var(--container-radius);
+  -webkit-box-shadow: inset 0 0 0 3.375em rgba(255, 255, 255, 0.1), inset 0 0 0 3.375em rgba(255, 255, 255, 0.1), 0 0 0 0.625em rgba(255, 255, 255, 0.1), 0 0 0 1.25em rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 0 0 3.375em rgba(255, 255, 255, 0.1), inset 0 0 0 3.375em rgba(255, 255, 255, 0.1), 0 0 0 0.625em rgba(255, 255, 255, 0.1), 0 0 0 1.25em rgba(255, 255, 255, 0.1);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-transition: var(--circle-transition);
+  -o-transition: var(--circle-transition);
+  transition: var(--circle-transition);
+  pointer-events: none;
+}
+
+.theme-switch__sun-moon-container {
+  pointer-events: auto;
+  position: relative;
+  z-index: 2;
+  width: var(--sun-moon-diameter);
+  height: var(--sun-moon-diameter);
+  margin: auto;
+  border-radius: var(--container-radius);
+  background-color: var(--sun-bg);
+  -webkit-box-shadow: 0.062em 0.062em 0.062em 0em rgba(254, 255, 239, 0.61) inset, 0em -0.062em 0.062em 0em #a1872a inset;
+  box-shadow: 0.062em 0.062em 0.062em 0em rgba(254, 255, 239, 0.61) inset, 0em -0.062em 0.062em 0em #a1872a inset;
+  -webkit-filter: drop-shadow(0.062em 0.125em 0.125em rgba(0, 0, 0, 0.25)) drop-shadow(0em 0.062em 0.125em rgba(0, 0, 0, 0.25));
+  filter: drop-shadow(0.062em 0.125em 0.125em rgba(0, 0, 0, 0.25)) drop-shadow(0em 0.062em 0.125em rgba(0, 0, 0, 0.25));
+  overflow: hidden;
+  -webkit-transition: var(--transition);
+  -o-transition: var(--transition);
+  transition: var(--transition);
+}
+
+.theme-switch__moon {
+  -webkit-transform: translateX(100%);
+  -ms-transform: translateX(100%);
+  transform: translateX(100%);
+  width: 100%;
+  height: 100%;
+  background-color: var(--moon-bg);
+  border-radius: inherit;
+  -webkit-box-shadow: 0.062em 0.062em 0.062em 0em rgba(254, 255, 239, 0.61) inset, 0em -0.062em 0.062em 0em #969696 inset;
+  box-shadow: 0.062em 0.062em 0.062em 0em rgba(254, 255, 239, 0.61) inset, 0em -0.062em 0.062em 0em #969696 inset;
+  -webkit-transition: var(--transition);
+  -o-transition: var(--transition);
+  transition: var(--transition);
+  position: relative;
+}
+
+.theme-switch__spot {
+  position: absolute;
+  top: 0.75em;
+  left: 0.312em;
+  width: 0.75em;
+  height: 0.75em;
+  border-radius: var(--container-radius);
+  background-color: var(--spot-color);
+  -webkit-box-shadow: 0em 0.0312em 0.062em rgba(0, 0, 0, 0.25) inset;
+  box-shadow: 0em 0.0312em 0.062em rgba(0, 0, 0, 0.25) inset;
+}
+
+.theme-switch__spot:nth-of-type(2) {
+  width: 0.375em;
+  height: 0.375em;
+  top: 0.937em;
+  left: 1.375em;
+}
+
+.theme-switch__spot:nth-last-of-type(3) {
+  width: 0.25em;
+  height: 0.25em;
+  top: 0.312em;
+  left: 0.812em;
+}
+
+.theme-switch__clouds {
+  width: 1.25em;
+  height: 1.25em;
+  background-color: var(--clouds-color);
+  border-radius: var(--container-radius);
+  position: absolute;
+  bottom: -0.625em;
+  left: 0.312em;
+  -webkit-box-shadow: 0.937em 0.312em var(--clouds-color), -0.312em -0.312em var(--back-clouds-color), 1.437em 0.375em var(--clouds-color), 0.5em -0.125em var(--back-clouds-color), 2.187em 0 var(--clouds-color), 1.25em -0.062em var(--back-clouds-color), 2.937em 0.312em var(--clouds-color), 2em -0.312em var(--back-clouds-color), 3.625em -0.062em var(--clouds-color), 2.625em 0em var(--back-clouds-color), 4.5em -0.312em var(--clouds-color), 3.375em -0.437em var(--back-clouds-color), 4.625em -1.75em 0 0.437em var(--clouds-color), 4em -0.625em var(--back-clouds-color), 4.125em -2.125em 0 0.437em var(--back-clouds-color);
+  box-shadow: 0.937em 0.312em var(--clouds-color), -0.312em -0.312em var(--back-clouds-color), 1.437em 0.375em var(--clouds-color), 0.5em -0.125em var(--back-clouds-color), 2.187em 0 var(--clouds-color), 1.25em -0.062em var(--back-clouds-color), 2.937em 0.312em var(--clouds-color), 2em -0.312em var(--back-clouds-color), 3.625em -0.062em var(--clouds-color), 2.625em 0em var(--back-clouds-color), 4.5em -0.312em var(--clouds-color), 3.375em -0.437em var(--back-clouds-color), 4.625em -1.75em 0 0.437em var(--clouds-color), 4em -0.625em var(--back-clouds-color), 4.125em -2.125em 0 0.437em var(--back-clouds-color);
+  -webkit-transition: 0.5s cubic-bezier(0, -0.02, 0.4, 1.25);
+  -o-transition: 0.5s cubic-bezier(0, -0.02, 0.4, 1.25);
+  transition: 0.5s cubic-bezier(0, -0.02, 0.4, 1.25);
+}
+
+.theme-switch__stars-container {
+  position: absolute;
+  color: var(--stars-color);
+  top: -100%;
+  left: 0.312em;
+  width: 2.75em;
+  height: auto;
+  -webkit-transition: var(--transition);
+  -o-transition: var(--transition);
+  transition: var(--transition);
+}
+
+.theme-switch__checkbox:checked + .theme-switch__container {
+  background-color: var(--container-night-bg);
+}
+
+.theme-switch__checkbox:checked + .theme-switch__container .theme-switch__circle-container {
+  left: calc(100% - var(--circle-container-offset) - var(--circle-container-diameter));
+}
+
+.theme-switch__checkbox:checked + .theme-switch__container .theme-switch__circle-container:hover {
+  left: calc(100% - var(--circle-container-offset) - var(--circle-container-diameter) - 0.187em)
+}
+
+.theme-switch__circle-container:hover {
+  left: calc(var(--circle-container-offset) + 0.187em);
+}
+
+.theme-switch__checkbox:checked + .theme-switch__container .theme-switch__moon {
+  -webkit-transform: translate(0);
+  -ms-transform: translate(0);
+  transform: translate(0);
+}
+
+.theme-switch__checkbox:checked + .theme-switch__container .theme-switch__clouds {
+  bottom: -4.062em;
+}
+
+.theme-switch__checkbox:checked + .theme-switch__container .theme-switch__stars-container {
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+/* KẾT THÚC CODE VY GỬI */
+
+/* CSS CỦA APP (GIỮ LẠI ĐỂ CHẠY GIAO DIỆN) */
+:root {
+    --accent: #ff85a1;
+    --sky-day: linear-gradient(180deg, #a2d2ff, #f8f9fd);
+    --sky-night: linear-gradient(180deg, #0f0c29, #302b63, #24243e);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    height: 100vh; display: flex; justify-content: center; align-items: center;
+    font-family: 'Quicksand', sans-serif; overflow: hidden; transition: 1s;
+    background: var(--sky-day);
+}
+
+/* Căn chỉnh vị trí nút gạt */
+.theme-toggle-wrapper {
+    position: absolute;
+    left: 40px;
+    top: 40px;
+    z-index: 100;
+}
+
+.app-container {
+    background: rgba(255, 255, 255, 0.5); backdrop-filter: blur(30px);
+    padding: 40px 50px; border-radius: 50px; width: 650px; text-align: center;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.1); border: 1px solid rgba(255,255,255,0.4);
+    z-index: 10;
+}
+
+.header-wrapper { display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
+.gradient-text { 
+    font-size: 2.5rem; font-weight: 800; background: linear-gradient(45deg, #ff85a1, #6c5ce7); 
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.header-icon.cherry { font-size: 3rem; margin-left: 15px; animation: rotateBloom 3s infinite ease-in-out; }
+
+.display-main, .result-box {
+    font-size: 5rem; font-weight: 800; color: var(--accent); margin: 20px 0;
+    background: rgba(240, 240, 240, 0.4); padding: 30px; border-radius: 35px;
+    box-shadow: inset 6px 6px 12px rgba(0, 0, 0, 0.08), inset -6px -6px 12px rgba(255, 255, 255, 0.8);
+    transition: 0.3s;
+}
+
+.input-group { display: flex; justify-content: center; gap: 30px; margin: 30px 0; }
+.neumorphic-input { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.neumorphic-input input, .date-input {
+    width: 100px; height: 100px; border: none; border-radius: 25px;
+    font-size: 2.5rem; font-weight: 800; color: var(--accent);
+    background: #f0f0f0; text-align: center; outline: none;
+    box-shadow: inset 5px 5px 10px rgba(0,0,0,0.05), inset -5px -5px 10px rgba(255,255,255,0.8);
+}
+.date-input { width: 300px; height: 70px; font-size: 1.5rem; }
+
+.action-btn { border: none; padding: 15px 40px; border-radius: 20px; font-size: 1.1rem; font-weight: 700; cursor: pointer; transition: 0.3s; }
+.action-btn.start { background: var(--accent); color: white; box-shadow: 0 10px 20px rgba(255, 133, 161, 0.3); }
+.action-btn.reset { background: rgba(0,0,0,0.05); color: #666; margin-left: 10px; }
+
+.nav-menu { display: flex; background: rgba(0,0,0,0.05); padding: 8px; border-radius: 25px; margin-bottom: 25px; }
+.tab-btn { flex: 1; border: none; background: none; padding: 12px; font-weight: 700; cursor: pointer; color: #888; }
+.tab-btn.active { color: var(--accent); background: white; border-radius: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+
+.cloud { position: absolute; user-select: none; pointer-events: none; opacity: 0.6; animation: cloudFly linear infinite; }
+@keyframes cloudFly { from { left: -250px; } to { left: 100vw; } }
+
+body.dark-mode { background: var(--sky-night); }
+body.dark-mode .app-container { background: rgba(30, 30, 50, 0.7); color: white; }
+body.dark-mode .display-main, body.dark-mode .neumorphic-input input, body.dark-mode .date-input {
+    background: rgba(0, 0, 0, 0.2); box-shadow: inset 6px 6px 12px rgba(0,0,0,0.4), inset -2px -2px 8px rgba(255,255,255,0.05);
+}
+.tab-content { display: none; } .tab-content.active { display: block; animation: fadeIn 0.5s; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+/* Lớp phủ đen mờ */
+.overlay {
+    display: none; /* Mặc định là ẩn */
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.4); /* Làm tối nền xung quanh */
+    backdrop-filter: blur(5px);   /* Làm mờ nền cực đẹp */
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Hộp thông báo chính */
+.alert-box {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    width: 300px;
+    position: relative;
+    border: 3px solid #ffb6c1; /* Viền hồng cùng tone */
+}
+
+.alert-box h2 { color: #ff8fab; margin-top: 0; }
+
+.alert-box button {
+    background: #ffb6c1;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 15px;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.custom-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+    z-index: 10000;
+    justify-content: center;
+    align-items: center;
+}
+
+.custom-alert-box {
+    background: white;
+    padding: 40px;
+    border-radius: 30px;
+    text-align: center;
+    box-shadow: 0 20px 50px rgba(255, 182, 193, 0.5);
+    border: 4px solid #ffb6c1;
+    animation: popIn 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+@keyframes popIn {
+    from { transform: scale(0.5); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.custom-alert-box h2 { color: #ff8fab; font-family: 'Quicksand', sans-serif; }
+.flower-icon { font-size: 3rem; margin-bottom: 10px; }
+
+.custom-alert-box button {
+    margin-top: 20px;
+    background: #ffb6c1;
+    border: none;
+    padding: 12px 35px;
+    border-radius: 20px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.custom-alert-box button:hover { background: #ff8fab; transform: scale(1.1); }
+
+/* --- CODE CSS TẠO HIỆU ỨNG LẮC LƯ CHO ICON MENU --- */
+
+/* Định nghĩa hiệu ứng lắc lư (Keyframes) */
+@keyframes shakeEmoji {
+  0% { transform: rotate(0deg) scale(1); }
+  20% { transform: rotate(-10deg) scale(1.1); }
+  40% { transform: rotate(10deg) scale(1.1); }
+  60% { transform: rotate(-5deg) scale(1.05); }
+  80% { transform: rotate(5deg) scale(1.05); }
+  100% { transform: rotate(0deg) scale(1); }
+}
+
+/* Áp dụng hiệu ứng cho các icon cụ thể */
+
+/* 1. Lời chào: Hoa anh đào 🌸 */
+/* (Tìm chỗ Vy đặt thẻ span chứa hoa anh đào, ví dụ có class 'cherry') */
+.header-icon.cherry {
+    display: inline-block; /* Quan trọng để animation chạy */
+    animation: shakeEmoji 2.5s infinite ease-in-out; /* Lắc nhẹ nhàng */
+    filter: drop-shadow(0 0 5px rgba(255, 182, 193, 0.6)); /* Thêm chút hào quang hồng */
+}
+
+/* 2. Menu: Đồng hồ cát ⏳ */
+/* (Cần thêm class cho emoji đồng hồ cát trong HTML, ví dụ 'hourglass') */
+.tab-btn span.hourglass {
+    display: inline-block;
+    animation: shakeEmoji 3s infinite ease-in-out; /* Lắc chậm hơn một chút */
+    animation-delay: 0.5s; /* Chạy lệch pha cho đẹp */
+}
+
+/* 3. Menu: Cái lịch 📅 */
+/* (Cần thêm class cho emoji cái lịch trong HTML, ví dụ 'calendar') */
+.tab-btn span.calendar {
+    display: inline-block;
+    animation: shakeEmoji 2.8s infinite ease-in-out; /* Tốc độ khác một chút */
+    animation-delay: 1s; /* Chạy lệch pha */
+}
+
+/* Nếu Vy muốn icon CHỈ lắc khi di chuột vào nút (hover) */
+/*
+.tab-btn:hover span.hourglass,
+.tab-btn:hover span.calendar {
+    animation: shakeEmoji 0.8s ease-in-out;
+}
+*/
+
+/* Tách biệt màu của icon và chữ */
+.emoji-icon {
+    display: inline-block;
+    color: initial; /* Trả về màu gốc của emoji */
+    font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
+    margin-left: 8px; /* Khoảng cách nhẹ với chữ */
+    
+    /* Cho các icon này lắc lư luôn cho đồng bộ nè Vy */
+    animation: shake-soft 2.5s infinite ease-in-out;
+}
+
+/* Đảm bảo chữ trong lời chào có màu bạn muốn mà không bị icon đè */
+#greeting {
+    color: #ff8fab; /* Hoặc màu hồng Vy đang dùng */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
